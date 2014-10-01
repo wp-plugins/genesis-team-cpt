@@ -1,4 +1,4 @@
-=== Genesis Team list CPT ===
+=== Genesis Team CPT ===
 Contributors: James Roberts
 Tags:
 Requires at least: 3.9
