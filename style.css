@@ -1,0 +1,20 @@
+.lp-team{
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.lp-team .lp-profile_pic img{
+    margin-bottom: 20px;
+    max-width: 190px;
+    width: 100%;
+}
+
+.text-center{
+    text-align: center;
+}
+@media (max-width: 791px) {
+    .lp-team .first, .lp-team h3{
+        text-align: center;
+    }
+}
