@@ -100,7 +100,7 @@ class lpTeam {
                     'parent_item_colon' => ''
                 ),
                 'exclude_from_search' => true,
-                'has_archive' => false,
+                'has_archive' => true,
                 'hierarchical' => true,
                 'taxonomies'   => array( 'lp-department' ),
                 'public' => true,
