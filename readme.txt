@@ -1,6 +1,6 @@
-=== Genesis Team CPT ===
+=== Genesis Team list CPT ===
 Contributors: James Roberts
-Tags:
+Tags: Genesis, Team, CPT
 Requires at least: 3.9
 Tested up to: 4.0
 License: GPL2

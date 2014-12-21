@@ -38,7 +38,7 @@ include( plugin_dir_path( __FILE__ ) . 'inc/plugins/plugins.php');
  */
 class lpTeam {
     /**
-    * Initiate functions and shortcode
+    * Initiate functions.
     *
     * @since 1.0
     * @link https://llama-press.com
@@ -62,12 +62,6 @@ class lpTeam {
         
         /* Creates team featured image for archive grid */
         add_image_size( 'lp-team', 190, 190, TRUE );
-        
-        /* Add shortcode */
-        add_shortcode( 'team', array( $this, 'team_shortcode' ) );
-        
-        /* enque styles for shortcode */
-        wp_enqueue_style( 'team', plugins_url('genesis-team-cpt/style.css', '') ); 
         
         /* create text domain */
         load_plugin_textdomain( 'lp', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
@@ -110,6 +104,7 @@ class lpTeam {
                 'query_var'           => false,
             )
         );
+        flush_rewrite_rules(); 
     }
 
     /**
@@ -247,79 +242,6 @@ class lpTeam {
         }
     }
     
-    /**
-    * Creates shortcode to display team members on any post or page.
-    * 
-    * @since 1.0
-    * @link https://llama-press.com
-    */
-    public function team_shortcode( $atts ) {
-        
-            $atts = shortcode_atts( array(
-              'amount' => '',
-              'orderby' => '',
-              'order' => ''
-            ), $atts );
-            $amount = $atts['amount'];
-            $orderby = $atts['orderby'];
-            if( $orderby == "" ) $orderby = 'post_date';
-            $order = $atts['order'];
-            if( $order == "" ) $order = 'DESC';
-            
-            if( $amount != '' ){
-                $args = array(
-                    'post_type' => 'lp-team',
-                    'orderby'       => $orderby,
-                    'order'         => $order,
-                    'posts_per_page' => $amount
-                );
-            }
-            else{
-                $args = array(
-                    'post_type' => 'lp-team',
-                    'orderby'       => $orderby,
-                    'order'         => $order,
-                );
-            }
-
-        $loop = new WP_Query( $args );
-        if( $loop->have_posts() ){
-            //loop through team members
-            while( $loop->have_posts() ): $loop->the_post();
-                $details = get_post_meta( get_the_id(), 'team-details' );
-                $department = wp_get_post_terms( get_the_id(), 'lp-department' );
-                $content .= "<div class='lp-team'>";
-                    $content .= "<div class='one-fourth first col lp-profile_pic text-center'>";
-                        if( has_post_thumbnail( ) ){
-                            $content .= get_the_post_thumbnail( get_the_id(), 'lp-team' );
-                        }
-                        else{
-                            $content .= "<img src='" . plugins_url( 'img/sheen.jpg' , __FILE__ ) . "' alt='sheen' />";
-                        }
-                        if($details[0][1]) $content .= "<br/><a target='_BLANK' href='" . $details[0][1] . "' >" . __( 'Google+ profile', 'lp' ) . "</a><br/>";
-                        if($details[0][2]) $content .= "<a target='_BLANK' href='" . $details[0][2] . "' >" . __( 'LinkedIn profile', 'lp' ) . "</a>";
-                    $content .= "</div>";
-                    $content .= "<div class='three-fourths col'>";
-                        $content .= "<h3>" . get_the_title() . " - " . $details[0][0] . "</h3>";
-                        if( $department ){
-                            $content .= "<p class='departments'>";
-                            foreach ($department as $dep){
-                                $content .= $dep->name . ", ";
-                            }
-                            $content = rtrim($content, ", ");
-                            $content .= "</p>";
-                        }
-                        if( get_the_content() ){
-                            $content .= get_the_content();
-                        }
-                    $content .= "</div>";
-                    $content .= "<div class='clearfix'></div>";
-                $content .= "</div>";
-            endwhile;
-        }
-        if($content)
-        return $content;
-    }
 }
 
 $team = new lpTeam();
