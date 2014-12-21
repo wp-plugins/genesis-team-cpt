@@ -26,9 +26,6 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-//include plugins
-include( plugin_dir_path( __FILE__ ) . 'inc/plugins/plugins.php');
-
 /**
  * This class creates a custom post type lp-team, this post type allows the user to create 
  * team member profiles to display in the Team page template.
