@@ -8,9 +8,7 @@ License: GPL2
 Add a team list custom post type
 
 == Description ==
-This plugin creates a team list custom post type and also comes with a shortcode to display your team members in any page or post, alternatively if you are using a business theme from LlamaPress you can use the team ist page template.
-
-The [team] shortcode accepts the following parameters... amount, orderby, and order.
+This plugin creates an lp-team custom post type.
 
 == Installation ==
 Upload
@@ -30,7 +28,7 @@ Check out the Codex for more information about installing plugins manually.
 
 == Frequently Asked Questions ==
 = How do I display my team list on my website? =
-If you are using a business theme from LlamaPress, you can create a page and give it the team list page template, if you are using a theme that does not come from LlamaPress you can use the shortcode [team] on any page, the services shortcode accepts parameters of amount (number of items to show), orderby and order.
+In order to display your team members, you will need to create the relevent files within your theme.
 
 = Do I need Genesis =
 Yes, in order to use this plugin your website will need to be running on the Genesis framework.
